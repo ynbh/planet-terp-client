@@ -1,5 +1,5 @@
 import requests
-from typing import List, Optional
+from typing import List, Optional, Any, Dict
 from .models import Course, Instructor, Professor, TA, Grade, SearchResult
 
 
@@ -9,7 +9,7 @@ class PlanetTerp:
     def __init__(self):
         self.session = requests.Session()
 
-    def _get(self, endpoint: str, params: dict = None) -> any:
+    def _get(self, endpoint: str, params: Optional[Dict[str, Any]] = None) -> Any:
         url = f"{self.BASE_URL}{endpoint}"
         response = self.session.get(url, params=params)
         response.raise_for_status()

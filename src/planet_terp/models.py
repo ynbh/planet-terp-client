@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
 
 
 @dataclass
@@ -13,7 +13,7 @@ class Course:
     average_gpa: Optional[float] = None
 
     @staticmethod
-    def from_dict(data: dict) -> "Course":
+    def from_dict(data: Dict[str, Any]) -> "Course":
         return Course(
             department=data.get("department"),
             course_number=data.get("course_number"),
@@ -26,21 +26,45 @@ class Course:
 
 
 @dataclass
+class Review:
+    professor: str
+    course: str
+    review: str
+    rating: int
+    expected_grade: str
+    created: str
+
+    @staticmethod
+    def from_dict(data: Dict[str, Any]) -> "Review":
+        return Review(
+            professor=data.get("professor"),
+            course=data.get("course"),
+            review=data.get("review"),
+            rating=data.get("rating"),
+            expected_grade=data.get("expected_grade"),
+            created=data.get("created"),
+        )
+
+
+@dataclass
 class Instructor:
     name: str
     slug: str
     type: str
     courses: List[str]
     average_rating: Optional[float] = None
-    reviews: Optional[List[dict]] = None
+    reviews: Optional[List[Review]] = None
 
     @staticmethod
-    def from_dict(data: dict) -> "Instructor":
+    def from_dict(data: Dict[str, Any]) -> "Instructor":
         # make a factory method to return either Professor or TA
         if data.get("type") == "ta":
             cls = TA
         else:
             cls = Professor
+
+        reviews_data = data.get("reviews")
+        reviews = [Review.from_dict(r) for r in reviews_data] if reviews_data else None
 
         return cls(
             name=data.get("name"),
@@ -48,7 +72,7 @@ class Instructor:
             type=data.get("type"),
             courses=data.get("courses", []),
             average_rating=data.get("average_rating"),
-            reviews=data.get("reviews"),
+            reviews=reviews,
         )
 
 
@@ -85,7 +109,7 @@ class Grade:
     Other: int
 
     @staticmethod
-    def from_dict(data: dict) -> "Grade":
+    def from_dict(data: Dict[str, Any]) -> "Grade":
         return Grade(
             course=data.get("course"),
             professor=data.get("professor"),
@@ -116,7 +140,7 @@ class SearchResult:
     type: str
 
     @staticmethod
-    def from_dict(data: dict) -> "SearchResult":
+    def from_dict(data: Dict[str, Any]) -> "SearchResult":
         return SearchResult(
             name=data.get("name"), slug=data.get("slug"), type=data.get("type")
         )

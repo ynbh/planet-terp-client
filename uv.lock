@@ -62,9 +62,9 @@ wheels = [
 ]
 
 [[package]]
-name = "planet-terp"
-version = "0.1.0"
-source = { virtual = "." }
+name = "planet-terp-client"
+version = "0.1.2"
+source = { editable = "." }
 dependencies = [
     { name = "requests" },
     { name = "ruff" },

@@ -70,8 +70,22 @@ def main():
     except Exception as e:
         print(f"Error: {e}")
 
-    # 7. Professor Ratings for a Course
-    print("\n7. Professor Ratings for CMSC330")
+    # 7. Type-Safe Review Access
+    print("\n7. Review Access (Checking reviews for Clyde Kruskal)")
+    try:
+        prof = client.professor("Clyde Kruskal", reviews=True)
+        if prof.reviews:
+            print(f"Found {len(prof.reviews)} reviews.")
+            first_review = prof.reviews[0]
+            print(
+                f"First review course: {first_review.course} (Rating: {first_review.rating})"
+            )
+            print(f"Created at: {first_review.created}")
+    except Exception as e:
+        print(f"Error: {e}")
+
+    # 8. Professor Ratings for a Course
+    print("\n8. Professor Ratings for CMSC330")
     try:
         course = client.course("CMSC330")
         for name in course.professors[:5]:
