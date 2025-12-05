@@ -1,11 +1,11 @@
 # planet-terp
 
-a python client for the planetterp api.
+a python client for the planet terp api.
 
 ## installation
 
 ```bash
-uv add planet-terp
+uv add planet-terp-client
 ```
 
 ## usage
