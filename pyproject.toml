@@ -1,0 +1,20 @@
+[project]
+name = "planet-terp"
+version = "0.1.0"
+description = "a python client for the planetterp api"
+readme = "README.md"
+requires-python = ">=3.13"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Yashas Bhat", email = "ybhat@umd.edu" },
+]
+
+dependencies = [
+    "requests",
+    "ruff>=0.14.8",
+]
+
+[project.urls]
+Homepage = "https://github.com/ynbh/planet-terp"
+Repository = "https://github.com/ynbh/planet-terp"
+Issues = "https://github.com/ynbh/planet-terp/issues"
