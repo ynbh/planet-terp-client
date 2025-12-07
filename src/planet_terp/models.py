@@ -28,11 +28,11 @@ class Course:
 @dataclass
 class Review:
     professor: str
-    course: str
     review: str
     rating: int
-    expected_grade: str
     created: str
+    course: Optional[str] = None
+    expected_grade: Optional[str] = None
 
     @staticmethod
     def from_dict(data: Dict[str, Any]) -> "Review":

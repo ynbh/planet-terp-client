@@ -9,4 +9,5 @@ __all__ = [
     "TA",
     "Grade",
     "SearchResult",
+    "Review",
 ]
