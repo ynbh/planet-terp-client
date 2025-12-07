@@ -6,10 +6,10 @@ from typing import List, Optional, Dict, Any
 class Course:
     department: str
     course_number: str
-    title: str
-    description: str
-    credits: int
-    professors: List[str]
+    title: Optional[str] = None
+    description: Optional[str] = None
+    credits: Optional[int] = None
+    professors: List[str] = None
     average_gpa: Optional[float] = None
 
     @staticmethod
@@ -89,7 +89,6 @@ class TA(Instructor):
 @dataclass
 class Grade:
     course: str
-    professor: str
     semester: str
     section: str
     A_plus: int
@@ -107,6 +106,7 @@ class Grade:
     F: int
     W: int
     Other: int
+    professor: Optional[str] = None
 
     @staticmethod
     def from_dict(data: Dict[str, Any]) -> "Grade":
